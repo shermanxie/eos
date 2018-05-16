@@ -138,7 +138,7 @@ public:
 
     asset get_balance( const account_name& act )
     {
-         return get_currency_balance(N(eosio.token), symbol(SY(4,EOS)), act);
+         return get_currency_balance(N(eosio.token), symbol(SY(4,SYS)), act);
     }
 
     action_result regproducer( const account_name& acnt, int params_fixture = 1 ) {
@@ -213,8 +213,8 @@ BOOST_FIXTURE_TEST_CASE( bootseq_test, bootseq_tester ) {
         // Todo : how to check the privilege is set? (use is_priv action)
 
 
-        auto max_supply = asset::from_string("10000000000.0000 EOS"); /// 1x larger than 1B initial tokens
-        auto initial_supply = asset::from_string("1000000000.0000 EOS"); /// 1x larger than 1B initial tokens
+        auto max_supply = asset::from_string("10000000000.0000 SYS"); /// 1x larger than 1B initial tokens
+        auto initial_supply = asset::from_string("1000000000.0000 SYS"); /// 1x larger than 1B initial tokens
 
         // Create EOS tokens in eosio.token, set its manager as eosio.system
         create_currency(N(eosio.token), config::system_account_name, max_supply );
@@ -307,8 +307,8 @@ BOOST_FIXTURE_TEST_CASE( bootseq_test, bootseq_tester ) {
 
         // Transfer EOS to genesis accounts
         /*for (auto gen_acc : gen_accounts) {
-            auto quantity = "10000.0000 EOS";
-            auto stake_quantity = "5000.0000 EOS";
+            auto quantity = "10000.0000 SYS";
+            auto stake_quantity = "5000.0000 SYS";
 
             ilog(".");
             auto trace = base_tester::push_action(N(eosio.token), N(transfer), config::system_account_name, mutable_variant_object()
